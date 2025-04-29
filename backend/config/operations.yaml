@@ -1,0 +1,41 @@
+- id: "pycharm"
+  title: "Start Pycharm"
+  description: "Initiate Pycharm IDE"
+  command: "./pycharm"
+  args: ["status"]
+  cwd: "/home/ubuntu"
+  category: "IDE"
+  tags: ["ide", "python"]
+
+- id: "df"
+  title: "Disk Free"
+  description: "Show Disk Usage"
+  command: "df -h"
+  args: []
+  cwd: "/home/ubuntu"
+  category: "OS"
+  tags: ["os", "disk"]
+
+- id: "system-update"
+  title: "System Update"
+  description: "Update system packages"
+  command: "sudo"
+  args: ["apt-get", "update", "&&", "sudo", "apt-get", "upgrade", "-y"]
+  category: "System"
+  tags: ["system", "update", "apt"]
+
+- id: "docker-ps"
+  title: "List Docker Containers"
+  description: "List all running Docker containers"
+  command: "docker"
+  args: ["ps"]
+  category: "DevOps"
+  tags: ["docker", "containers"]
+
+- id: "disk-usage"
+  title: "Check Disk Usage"
+  description: "Show disk usage for the current directory"
+  command: "du"
+  args: ["-h", "--max-depth=1"]
+  category: "System"
+  tags: ["disk", "usage", "storage"] 
