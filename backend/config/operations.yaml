@@ -1,3 +1,24 @@
+- id: "df"
+  title: "Disk Free"
+  description: "Show Disk Free"
+  command: "df -h"
+  args: []
+  cwd: "/home/ubuntu"
+  category: "OS"
+  tags: ["os", "disk"]
+
+- id: "du"
+  title: "Disk Usage"
+  description: "Show Disk Usage"
+  command: "du -h"
+  args: []
+  cwd: "/home/ubuntu"
+  category: "OS"
+  pipe_command: 
+     "1": "sort -h"
+  tags: ["os", "disk"]
+
+
 - id: "pycharm"
   title: "Start Pycharm"
   description: "Initiate Pycharm IDE"
@@ -7,14 +28,7 @@
   category: "IDE"
   tags: ["ide", "python"]
 
-- id: "df"
-  title: "Disk Free"
-  description: "Show Disk Usage"
-  command: "df -h"
-  args: []
-  cwd: "/home/ubuntu"
-  category: "OS"
-  tags: ["os", "disk"]
+
 
 - id: "system-update"
   title: "System Update"

@@ -50,17 +50,30 @@ class FrequentOperations {
         allArgs.push(customArgs);
       }
 
-      const fullCommand = `${command} ${allArgs.join(' ')}`;
+      // Build the base command
+      let fullCommand = `${command} ${allArgs.join(' ')}`;
+
+      // Add pipe commands if specified
+      if (operation.pipe_command) {
+        // Sort pipe commands by their numeric keys
+        const sortedPipeCommands = Object.entries(operation.pipe_command)
+          .sort(([a], [b]) => parseInt(a) - parseInt(b))
+          .map(([_, cmd]) => cmd);
+
+        // Add each pipe command to the full command
+        fullCommand += ' | ' + sortedPipeCommands.join(' | ');
+      }
+
       logger.info(`Executing operation: ${fullCommand} in ${cwd}`);
 
       exec(fullCommand, { cwd }, (error, stdout, stderr) => {
         if (error) {
           logger.error(`Error executing operation ${id}:`, error);
           reject(error);
-          return;
+        } else {
+          logger.info(`Successfully executed operation ${id}`);
+          resolve({ stdout, stderr });
         }
-        logger.info(`Operation ${id} executed successfully`);
-        resolve({ stdout, stderr });
       });
     });
   }
